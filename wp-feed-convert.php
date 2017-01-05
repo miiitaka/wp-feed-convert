@@ -85,6 +85,14 @@ class Wp_Feed_Convert {
 			plugin_dir_path( __FILE__ ) . 'includes/wp-feed-convert-admin-post.php',
 			array( $this, 'post_page_render' )
 		);
+		add_submenu_page(
+			__FILE__,
+			esc_html__( 'Item Edit', $this->text_domain ),
+			esc_html__( 'Item Edit', $this->text_domain ),
+			'manage_options',
+			plugin_dir_path( __FILE__ ) . 'includes/wp-feed-convert-admin-item.php',
+			array( $this, 'item_page_render' )
+		);
 	}
 
 	/**
@@ -107,5 +115,16 @@ class Wp_Feed_Convert {
 	public function post_page_render () {
 		require_once( plugin_dir_path( __FILE__ ) . 'includes/wp-feed-convert-admin-post.php' );
 		new Wp_Feed_Convert_Admin_Post( $this->text_domain );
+	}
+
+	/**
+	 * Admin Post Page Template Require.
+	 *
+	 * @version 1.0.0
+	 * @since   1.0.0
+	 */
+	public function item_page_render () {
+		require_once( plugin_dir_path( __FILE__ ) . 'includes/wp-feed-convert-admin-item.php' );
+		new Wp_Feed_Convert_Admin_Item( $this->text_domain );
 	}
 }

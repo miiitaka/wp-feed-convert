@@ -49,7 +49,8 @@ class Wp_Feed_Convert_Admin_Post {
 			"name"                  => "",
 			"master_path"           => "",
 			"output_file"           => "",
-			"output_format"         => "csv",
+			"read_format"           => "csv",
+			"write_format"          => "csv",
 			'output_item_count'     => 0,
 			'output_item_master'    => "",
 			'output_item_extension' => "",
@@ -117,18 +118,27 @@ class Wp_Feed_Convert_Admin_Post {
 		$html .= esc_attr( $options['name'] ) . '">';
 		$html .= '</td></tr>';
 		$html .= '<tr><th><label for="master_path">' . esc_html__( 'Master File Path', $this->text_domain ) . ':</label></th><td>';
-		$html .= '<input type="text" name="master_path" id="master_path" class="regular-text" required value="';
+		$html .= '<input type="text" name="master_path" id="master_path" class="large-text" required value="';
 		$html .= esc_attr( $options['master_path'] ) . '">';
 		$html .= '</td></tr>';
 		$html .= '<tr><th><label for="output_file">' . esc_html__( 'Output File Name', $this->text_domain ) . ':</label></th><td>';
 		$html .= '<input type="text" name="output_file" id="output_file" class="regular-text" required value="';
 		$html .= esc_attr( $options['output_file'] ) . '">';
 		$html .= '</td></tr>';
-		$html .= '<tr><th><label for="output_format">' . esc_html__( 'Type', $this->text_domain ) . ':</label></th><td>';
-		$html .= '<select name="output_format" id="output_format">';
+		$html .= '<tr><th><label for="read_format">' . esc_html__( 'Read File Format', $this->text_domain ) . ':</label></th><td>';
+		$html .= '<select name="read_format" id="read_format">';
 		foreach ( $this->output_format as $key =>$value ) {
 			$html .= '<option value="' . $key . '"';
-			$html .= ( $options['output_format'] === $key ) ? ' selected=selected' : '';
+			$html .= ( $options['read_format'] === $key ) ? ' selected=selected' : '';
+			$html .= '>' . $value;
+		}
+		$html .= '</select>';
+		$html .= '</td></tr>';
+		$html .= '<tr><th><label for="write_format">' . esc_html__( 'Write File Format', $this->text_domain ) . ':</label></th><td>';
+		$html .= '<select name="write_format" id="write_format">';
+		foreach ( $this->output_format as $key =>$value ) {
+			$html .= '<option value="' . $key . '"';
+			$html .= ( $options['write_format'] === $key ) ? ' selected=selected' : '';
 			$html .= '>' . $value;
 		}
 		$html .= '</select>';

@@ -47,7 +47,8 @@ class Wp_Feed_Convert_Admin_Db {
 			$query .= ",name tinytext NOT NULL";
 			$query .= ",master_path text NOT NULL";
 			$query .= ",output_file tinytext NOT NULL";
-			$query .= ",output_format tinytext NOT NULL";
+			$query .= ",read_format tinytext NOT NULL";
+			$query .= ",write_format tinytext NOT NULL";
 			$query .= ",output_item_count int";
 			$query .= ",output_item_master text";
 			$query .= ",output_item_extension text";
@@ -110,14 +111,17 @@ class Wp_Feed_Convert_Admin_Db {
 			'name'                  => strip_tags( $post['name'] ),
 			'master_path'           => strip_tags( $post['master_path'] ),
 			'output_file'           => strip_tags( $post['output_file'] ),
-			'output_format'         => strip_tags( $post['output_format'] ),
+			'read_format'           => strip_tags( $post['read_format'] ),
+			'write_format'          => strip_tags( $post['write_format'] ),
 			'output_item_count'     => (int) $post['output_item_count'],
-			'output_item_master'    => strip_tags( $post['output_item_master'] ),
-			'output_item_extension' => strip_tags( $post['output_item_extension'] ),
+			'output_item_master'    => serialize( $post['output_item_master'] ),
+			'output_item_extension' => serialize( array() ),
 			'register_date'         => date( "Y-m-d H:i:s" ),
 			'update_date'           => date( "Y-m-d H:i:s" )
 		);
 		$prepared = array(
+			'%s',
+			'%s',
 			'%s',
 			'%s',
 			'%s',
@@ -140,18 +144,23 @@ class Wp_Feed_Convert_Admin_Db {
 	public function update_options ( array $post ) {
 		global $wpdb;
 
+		$post = $this->set_csv_items( $post );
+
 		$data = array(
 			'name'                  => strip_tags( $post['name'] ),
 			'master_path'           => strip_tags( $post['master_path'] ),
 			'output_file'           => strip_tags( $post['output_file'] ),
-			'output_format'         => strip_tags( $post['output_format'] ),
+			'read_format'           => strip_tags( $post['read_format'] ),
+			'write_format'          => strip_tags( $post['write_format'] ),
 			'output_item_count'     => (int) $post['output_item_count'],
-			'output_item_master'    => strip_tags( $post['output_item_master'] ),
-			'output_item_extension' => strip_tags( $post['output_item_extension'] ),
+			'output_item_master'    => serialize( $post['output_item_master'] ),
+			'output_item_extension' => serialize( $post['output_item_extension'] ),
 			'update_date'           => date( "Y-m-d H:i:s" )
 		);
 		$key = array( 'id' => esc_html( $post['feed_convert_id'] ) );
 		$prepared = array(
+			'%s',
+			'%s',
 			'%s',
 			'%s',
 			'%s',
