@@ -80,13 +80,13 @@ class Wp_Feed_Convert_Admin_List {
 				$html .= '<tr>';
 				$html .= '<td><input type="text" onfocus="this.select();" readonly="readonly" value="' . esc_url( $row->master_path ) . '" class="large-text code"></td>';
 				$html .= '<td>';
-				$html .= '<a href="' . $post_url . '&feed_convert_id=' . esc_html( $row->id ) . '">';
+				$html .= '<a href="' . $post_url . '&feed_convert_id=' . esc_html( $row->id ) . '" class="feed-convert-button">';
 				$html .= esc_html__( 'Master Edit', $this->text_domain );
 				$html .= '</a>&nbsp;&nbsp;&nbsp;&nbsp;';
-				$html .= '<a href="' . $item_url . '&feed_convert_id=' . esc_html( $row->id ) . '">';
+				$html .= '<a href="' . $item_url . '&feed_convert_id=' . esc_html( $row->id ) . '" class="feed-convert-button">';
 				$html .= esc_html__( 'Item Edit', $this->text_domain );
 				$html .= '</a>&nbsp;&nbsp;&nbsp;&nbsp;';
-				$html .= '<a href="' . $self_url . '&mode=delete&feed_convert_id=' . esc_html( $row->id ) . '">';
+				$html .= '<a href="' . $self_url . '&mode=delete&feed_convert_id=' . esc_html( $row->id ) . '" class="feed-convert-button">';
 				$html .= esc_html__( 'Delete', $this->text_domain );
 				$html .= '</a>';
 				$html .= '</td>';

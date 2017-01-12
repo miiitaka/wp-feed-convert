@@ -1,0 +1,40 @@
+/*
+ Feed Convert All Setting
+*/
+.wp-list-table td {
+    vertical-align: middle;
+}
+
+.feed-convert-button {
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    color: #0073aa;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    outline: 0;
+    padding: 4px 8px;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+/*
+ Feed Convert Master Setting
+*/
+.feed-master-table {
+    width: 100%;
+}
+
+.feed-master-table th {
+    text-align: right;
+    width: 130px;
+}
+
+/*
+ Feed Convert Setting Item
+*/
+.feed-item-table {
+
+}
