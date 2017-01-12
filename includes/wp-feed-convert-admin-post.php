@@ -112,7 +112,7 @@ class Wp_Feed_Convert_Admin_Post {
 		echo $html;
 
 		/** Common settings */
-		$html  = '<table>';
+		$html  = '<table class="feed-master-table">';
 		$html .= '<tr><th><label for="name">' . esc_html__( 'Name', $this->text_domain ) . ':</label></th><td>';
 		$html .= '<input type="text" name="name" id="name" class="regular-text" required autofocus value="';
 		$html .= esc_attr( $options['name'] ) . '">';

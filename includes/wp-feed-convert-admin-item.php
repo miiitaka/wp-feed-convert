@@ -28,7 +28,6 @@ class Wp_Feed_Convert_Admin_Item {
 
 		if ( isset( $_GET['feed_convert_id'] ) && is_numeric( $_GET['feed_convert_id'] ) ) {
 			$db = new Wp_Feed_Convert_Admin_Db();
-
 			$this->page_render( $db );
 		}
 	}
@@ -47,14 +46,13 @@ class Wp_Feed_Convert_Admin_Item {
 		echo $html;
 
 		$html  = '<hr>';
-		$html .= '<table class="wp-list-table widefat fixed striped posts">';
+		$html .= '<table>';
 		$html .= '<tr>';
 		$html .= '<th scope="row">' . esc_html__( 'Read Master Data', $this->text_domain ) . '</th>';
 		$html .= '<th scope="row">' . esc_html__( 'Master Data Name', $this->text_domain ) . '</th>';
 		$html .= '</tr>';
 		echo $html;
 
-		/** DB table get list */
 		/** DB table get list */
 		$results     = $db->get_list_options();
 		$output_item = unserialize( $results[0]->output_item_master );

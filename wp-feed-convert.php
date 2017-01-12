@@ -32,6 +32,14 @@ class Wp_Feed_Convert {
 	private $text_domain = 'wp-feed-convert';
 
 	/**
+	 * Variable definition.
+	 *
+	 * @version 1.0.0
+	 * @since   1.0.0
+	 */
+	private $version = '1.0.0';
+
+	/**
 	 * Constructor Define.
 	 *
 	 * @version 1.0.0
@@ -40,6 +48,7 @@ class Wp_Feed_Convert {
 	public function __construct () {
 		register_activation_hook( __FILE__, array( $this, 'create_table' ) );
 		if ( is_admin() ) {
+			add_action( 'admin_init', array( $this, 'admin_init' ) );
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		}
 	}
@@ -56,6 +65,16 @@ class Wp_Feed_Convert {
 	}
 
 	/**
+	 * admin init.
+	 *
+	 * @version 1.0.0
+	 * @since   1.0.0
+	 */
+	public function admin_init () {
+		wp_register_style( 'wp-feed-convert-admin-style', plugins_url( 'css/style.css', __FILE__ ), array(), $this->version );
+	}
+
+	/**
 	 * Add Menu to the Admin Screen.
 	 *
 	 * @version 1.0.0
@@ -69,7 +88,7 @@ class Wp_Feed_Convert {
 			plugin_basename( __FILE__ ),
 			array( $this, 'list_page_render' )
 		);
-		add_submenu_page(
+		$list_page = add_submenu_page(
 			__FILE__,
 			esc_html__( 'All Settings', $this->text_domain ),
 			esc_html__( 'All Settings', $this->text_domain ),
@@ -77,7 +96,7 @@ class Wp_Feed_Convert {
 			plugin_basename( __FILE__ ),
 			array( $this, 'list_page_render' )
 		);
-		add_submenu_page(
+		$post_page = add_submenu_page(
 			__FILE__,
 			esc_html__( 'Add New', $this->text_domain ),
 			esc_html__( 'Add New', $this->text_domain ),
@@ -85,7 +104,7 @@ class Wp_Feed_Convert {
 			plugin_dir_path( __FILE__ ) . 'includes/wp-feed-convert-admin-post.php',
 			array( $this, 'post_page_render' )
 		);
-		add_submenu_page(
+		$item_edit = add_submenu_page(
 			__FILE__,
 			esc_html__( 'Item Edit', $this->text_domain ),
 			esc_html__( 'Item Edit', $this->text_domain ),
@@ -93,6 +112,10 @@ class Wp_Feed_Convert {
 			plugin_dir_path( __FILE__ ) . 'includes/wp-feed-convert-admin-item.php',
 			array( $this, 'item_page_render' )
 		);
+
+		add_action( 'admin_print_styles-'  . $list_page, array( $this, 'add_style' ) );
+		add_action( 'admin_print_styles-'  . $post_page, array( $this, 'add_style' ) );
+		add_action( 'admin_print_styles-'  . $item_edit, array( $this, 'add_style' ) );
 	}
 
 	/**
@@ -126,5 +149,15 @@ class Wp_Feed_Convert {
 	public function item_page_render () {
 		require_once( plugin_dir_path( __FILE__ ) . 'includes/wp-feed-convert-admin-item.php' );
 		new Wp_Feed_Convert_Admin_Item( $this->text_domain );
+	}
+
+	/**
+	 * CSS admin add.
+	 *
+	 * @version 1.0.0
+	 * @since   1.0.0
+	 */
+	public function add_style () {
+		wp_enqueue_style( 'wp-feed-convert-admin-style' );
 	}
 }
