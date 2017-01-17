@@ -1,3 +1,5 @@
-/**
- * Created by miyauchiaratana on 2017/01/16.
- */
+(function($){
+    $(function(){
+
+    });
+})(jQuery);

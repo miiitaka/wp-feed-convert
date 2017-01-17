@@ -116,6 +116,17 @@ class Wp_Feed_Convert {
 		add_action( 'admin_print_styles-'  . $list_page, array( $this, 'add_style' ) );
 		add_action( 'admin_print_styles-'  . $post_page, array( $this, 'add_style' ) );
 		add_action( 'admin_print_styles-'  . $item_edit, array( $this, 'add_style' ) );
+		add_action( 'admin_print_scripts-' . $item_edit, array( $this, 'admin_scripts') );
+	}
+
+	/**
+	 * admin_scripts
+	 *
+	 * @since   1.0.0
+	 * @version 1.0.0
+	 */
+	public function admin_scripts () {
+		wp_enqueue_script( 'wp-posted-display-admin-main-js', plugins_url( 'js/main.min.js', __FILE__ ), array('jquery'), $this->version );
 	}
 
 	/**
