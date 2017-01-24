@@ -58,6 +58,13 @@ class Wp_Feed_Convert_Admin_Item {
 		$output_item = unserialize( $results[0]->output_item_master );
 		$count       = count( $output_item );
 
+		$html  = '';
+		$html .= '<tr>';
+		$html .= '<td><input type="text" value="" class="regular-text code"></td>';
+		$html .= '<td><input type="text" id="name[]" name="name[]" value="" class="regular-text code"></td>';
+		$html .= '</tr>';
+		echo $html;
+
 		if ( $output_item ) {
 			for ( $i = 0; $i < $count; $i++ ) {
 				$html  = '';
