@@ -46,7 +46,7 @@ class Wp_Feed_Convert_Admin_Item {
 		echo $html;
 
 		$html  = '<hr>';
-		$html .= '<table>';
+		$html .= '<table id="add-table">';
 		$html .= '<tr>';
 		$html .= '<th scope="row">' . esc_html__( 'Read Master Data', $this->text_domain ) . '</th>';
 		$html .= '<th scope="row">' . esc_html__( 'Master Data Name', $this->text_domain ) . '</th>';
@@ -60,8 +60,8 @@ class Wp_Feed_Convert_Admin_Item {
 
 		$html  = '';
 		$html .= '<tr>';
-		$html .= '<td><input type="text" value="" class="regular-text code"></td>';
-		$html .= '<td><input type="text" id="name[]" name="name[]" value="" class="regular-text code"></td>';
+		$html .= '<td><input type="text" id="add-data" name="add-data" value="" class="regular-text code"></td>';
+		$html .= '<td><input type="text" id="add-name" name="add-name" value="" class="regular-text code"><input type="button" id="add-item" value="Add Item"></td>';
 		$html .= '</tr>';
 		echo $html;
 
@@ -70,7 +70,7 @@ class Wp_Feed_Convert_Admin_Item {
 				$html  = '';
 				$html .= '<tr>';
 				$html .= '<td><input type="text" readonly="readonly" value="' . esc_html( $output_item[$i] ) . '" class="regular-text code"></td>';
-				$html .= '<td><input type="text" id="name[]" name="name[]" value="' . esc_html( $output_item[$i] ) . '" class="regular-text code"></td>';
+				$html .= '<td><input type="text" name="name[]" value="' . esc_html( $output_item[$i] ) . '" class="regular-text code"></td>';
 				$html .= '</tr>';
 				echo $html;
 			}

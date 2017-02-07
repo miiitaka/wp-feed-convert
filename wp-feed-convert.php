@@ -126,7 +126,7 @@ class Wp_Feed_Convert {
 	 * @version 1.0.0
 	 */
 	public function admin_scripts () {
-		wp_enqueue_script( 'wp-posted-display-admin-main-js', plugins_url( 'js/main.min.js', __FILE__ ), array('jquery'), $this->version );
+		wp_enqueue_script( 'wp-feed-convert-admin-item-add-js', plugins_url( 'js/item-add.js', __FILE__ ), array('jquery'), $this->version );
 	}
 
 	/**
